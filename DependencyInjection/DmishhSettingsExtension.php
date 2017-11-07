@@ -1,15 +1,15 @@
 <?php
 
 /**
- * This file is part of the DmishhSettingsBundle package.
+ * This file is part of the MharySettingsBundle package.
  *
- * (c) 2013 Dmitriy Scherbina <http://dmishh.com>
+ * (c) 2013 Dmitriy Scherbina <http://mhary.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Dmishh\SettingsBundle\DependencyInjection;
+namespace Mhary\SettingsBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
@@ -22,7 +22,7 @@ use Symfony\Component\HttpKernel\DependencyInjection\Extension;
  *
  * To learn more see {@link http://symfony.com/doc/current/cookbook/bundles/extension.html}
  */
-class DmishhSettingsExtension extends Extension
+class MharySettingsExtension extends Extension
 {
     /**
      * {@inheritdoc}
@@ -41,14 +41,14 @@ class DmishhSettingsExtension extends Extension
 
         // Configure the correct storage
         if ($config['cache_service'] === null) {
-            $container->removeDefinition('dmishh.settings.cached_settings_manager');
+            $container->removeDefinition('mhary.settings.cached_settings_manager');
         } else {
-            $container->getDefinition('dmishh.settings.cached_settings_manager')
+            $container->getDefinition('mhary.settings.cached_settings_manager')
                 ->replaceArgument(1, new Reference($config['cache_service']))
                 ->replaceArgument(2, $config['cache_lifetime']);
 
             // set an alias to make sure the cached settings manager is the default
-            $container->setAlias('settings_manager', 'dmishh.settings.cached_settings_manager');
+            $container->setAlias('settings_manager', 'mhary.settings.cached_settings_manager');
         }
     }
 }

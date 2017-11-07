@@ -45,7 +45,7 @@ $this->get('settings_manager')->set('user_scope_setting', 'value'); // => WrongS
 You may configure a scope to each of your settings. You can use ALL (default), GLOBAL or USER scope.
 
 ```yaml
-dmishh_settings:
+mhary_settings:
     settings:
         my_first_user_setting:
             scope: user # all, global

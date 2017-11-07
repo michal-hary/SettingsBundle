@@ -7,6 +7,6 @@ doctrine:
     driver: pdo_mysql
   orm: ~
 
-dmishh_settings:
+mhary_settings:
   settings:
     my_first_setting: ~

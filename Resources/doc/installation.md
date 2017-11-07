@@ -17,7 +17,7 @@
     {
         "require": {
             // ...
-            "dmishh/settings-bundle": "2.0.*@dev"
+            "mhary/settings-bundle": "2.0.*@dev"
         }
     }
     ```
@@ -36,7 +36,7 @@
     // in AppKernel::registerBundles()
     $bundles = array(
         // ...
-        new Dmishh\SettingsBundle\DmishhSettingsBundle(),
+        new Mhary\SettingsBundle\MharySettingsBundle(),
     );
     ```
 
@@ -59,14 +59,14 @@
 
     ```yaml
     settings:
-        resource: "@DmishhSettingsBundle/Resources/config/routing.yml"
+        resource: "@MharySettingsBundle/Resources/config/routing.yml"
         prefix: /settings
     ```
 
 * Configure first setting, add to _app/config/config.yml_:
 
     ```yaml
-    dmishh_settings:
+    mhary_settings:
         settings:
             my_first_setting: ~
     ```

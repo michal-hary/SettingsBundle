@@ -1,25 +1,25 @@
 <?php
 
 /**
- * This file is part of the DmishhSettingsBundle package.
+ * This file is part of the MharySettingsBundle package.
  *
- * (c) 2013 Dmitriy Scherbina <http://dmishh.com>
+ * (c) 2013 Dmitriy Scherbina <http://mhary.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Dmishh\SettingsBundle\Tests;
+namespace Mhary\SettingsBundle\Tests;
 
-use Dmishh\SettingsBundle\Manager\SettingsManager;
-use Dmishh\SettingsBundle\Manager\SettingsManagerInterface;
-use Dmishh\SettingsBundle\Serializer\SerializerFactory;
+use Mhary\SettingsBundle\Manager\SettingsManager;
+use Mhary\SettingsBundle\Manager\SettingsManagerInterface;
+use Mhary\SettingsBundle\Serializer\SerializerFactory;
 use Mockery;
 
 class SettingsManagerTest extends AbstractTest
 {
     /**
-     * @expectedException \Dmishh\SettingsBundle\Exception\UnknownSettingException
+     * @expectedException \Mhary\SettingsBundle\Exception\UnknownSettingException
      */
     public function testGetUnknownSettingShouldRaiseException()
     {
@@ -108,7 +108,7 @@ class SettingsManagerTest extends AbstractTest
     }
 
     /**
-     * @expectedException \Dmishh\SettingsBundle\Exception\WrongScopeException
+     * @expectedException \Mhary\SettingsBundle\Exception\WrongScopeException
      */
     public function testSetUserSettingInGlobalScopeRaisesException()
     {
@@ -121,7 +121,7 @@ class SettingsManagerTest extends AbstractTest
     }
 
     /**
-     * @expectedException \Dmishh\SettingsBundle\Exception\WrongScopeException
+     * @expectedException \Mhary\SettingsBundle\Exception\WrongScopeException
      */
     public function testGetUserSettingInGlobalScopeRaisesException()
     {
@@ -131,7 +131,7 @@ class SettingsManagerTest extends AbstractTest
     }
 
     /**
-     * @expectedException \Dmishh\SettingsBundle\Exception\WrongScopeException
+     * @expectedException \Mhary\SettingsBundle\Exception\WrongScopeException
      */
     public function testSetGlobalSettingInUserScopeRaisesException()
     {
@@ -144,7 +144,7 @@ class SettingsManagerTest extends AbstractTest
     }
 
     /**
-     * @expectedException \Dmishh\SettingsBundle\Exception\WrongScopeException
+     * @expectedException \Mhary\SettingsBundle\Exception\WrongScopeException
      */
     public function testGetGlobalSettingInUserScopeRaisesException()
     {
@@ -217,7 +217,7 @@ class SettingsManagerTest extends AbstractTest
     }
 
     /**
-     * @expectedException \Dmishh\SettingsBundle\Exception\SettingsException
+     * @expectedException \Mhary\SettingsBundle\Exception\SettingsException
      */
     public function testSetSettingWithInvalidSerizalizationType()
     {
@@ -226,7 +226,7 @@ class SettingsManagerTest extends AbstractTest
     }
 
     /**
-     * @expectedException \Dmishh\SettingsBundle\Exception\SettingsException
+     * @expectedException \Mhary\SettingsBundle\Exception\SettingsException
      */
     public function testGetSettingWithInvalidSerizalizationType()
     {
@@ -257,7 +257,7 @@ class SettingsManagerTest extends AbstractTest
     }
 
     /**
-     * @see https://github.com/dmishh/SettingsBundle/issues/28
+     * @see https://github.com/mhary/SettingsBundle/issues/28
      */
     public function testFlush()
     {
@@ -267,11 +267,11 @@ class SettingsManagerTest extends AbstractTest
         $value = 'settingValue';
         $serializedValue = 'sValue';
 
-        $flushMethod = new \ReflectionMethod('Dmishh\SettingsBundle\Manager\SettingsManager', 'flush');
+        $flushMethod = new \ReflectionMethod('Mhary\SettingsBundle\Manager\SettingsManager', 'flush');
         $flushMethod->setAccessible(true);
 
         $serializer = $this
-            ->getMockBuilder('Dmishh\SettingsBundle\Serializer\PhpSerializer')
+            ->getMockBuilder('Mhary\SettingsBundle\Serializer\PhpSerializer')
             ->setMethods(array('serialize'))
             ->getMock();
 
@@ -306,7 +306,7 @@ class SettingsManagerTest extends AbstractTest
         $em->expects($this->once())->method('flush');
 
         $setting = $this
-            ->getMockBuilder('Dmishh\SettingsBundle\Entity\Settings')
+            ->getMockBuilder('Mhary\SettingsBundle\Entity\Settings')
             ->disableOriginalConstructor()
             ->setMethods(array('setValue'))
             ->getMock();
@@ -314,7 +314,7 @@ class SettingsManagerTest extends AbstractTest
         $setting->expects($this->exactly(count($names)))->method('setValue')->with($this->equalTo($serializedValue));
 
         $manager = $this
-            ->getMockBuilder('Dmishh\SettingsBundle\Manager\SettingsManager')
+            ->getMockBuilder('Mhary\SettingsBundle\Manager\SettingsManager')
             ->setConstructorArgs(array($em, $serializer, array()))
             ->setMethods(array('findSettingByName', 'get'))
             ->getMock();
@@ -351,7 +351,7 @@ class SettingsManagerTest extends AbstractTest
         $s4 = $this->createSetting('foo');
         $settings = array($s1, $s2, $s3, $s4);
 
-        $method = new \ReflectionMethod('Dmishh\SettingsBundle\Manager\SettingsManager', 'findSettingByName');
+        $method = new \ReflectionMethod('Mhary\SettingsBundle\Manager\SettingsManager', 'findSettingByName');
         $method->setAccessible(true);
 
         $result = $method->invoke($settingsManager, $settings, 'bar');
@@ -366,7 +366,7 @@ class SettingsManagerTest extends AbstractTest
 
     protected function createSetting($name)
     {
-        $s = $this->getMockBuilder('Dmishh\SettingsBundle\Entity\Setting')
+        $s = $this->getMockBuilder('Mhary\SettingsBundle\Entity\Setting')
             ->setMethods(array('getName'))
             ->getMock();
 
@@ -380,12 +380,12 @@ class SettingsManagerTest extends AbstractTest
     /**
      * @param string $ownerId
      *
-     * @return \Dmishh\SettingsBundle\Entity\SettingsOwnerInterface
+     * @return \Mhary\SettingsBundle\Entity\SettingsOwnerInterface
      */
     protected function createOwner($ownerId = 'user1')
     {
         return Mockery::mock(
-            'Dmishh\SettingsBundle\Entity\SettingsOwnerInterface',
+            'Mhary\SettingsBundle\Entity\SettingsOwnerInterface',
             array('getSettingIdentifier' => $ownerId)
         );
     }

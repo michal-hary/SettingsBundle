@@ -1,17 +1,17 @@
 <?php
 
 /**
- * This file is part of the DmishhSettingsBundle package.
+ * This file is part of the MharySettingsBundle package.
  *
- * (c) 2013 Dmitriy Scherbina <http://dmishh.com>
+ * (c) 2013 Dmitriy Scherbina <http://mhary.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Dmishh\SettingsBundle\Tests;
+namespace Mhary\SettingsBundle\Tests;
 
-use Dmishh\SettingsBundle\Serializer\SerializerFactory;
+use Mhary\SettingsBundle\Serializer\SerializerFactory;
 
 class SerializerTest extends AbstractTest
 {
@@ -33,12 +33,12 @@ class SerializerTest extends AbstractTest
 
     public function testCustomSerializer()
     {
-        $serializer = SerializerFactory::create('Dmishh\SettingsBundle\Tests\Serializer\CustomSerializer');
+        $serializer = SerializerFactory::create('Mhary\SettingsBundle\Tests\Serializer\CustomSerializer');
         $this->assertEquals(self::$testData, $serializer->unserialize($serializer->serialize(self::$testData)));
     }
 
     /**
-     * @expectedException \Dmishh\SettingsBundle\Exception\UnknownSerializerException
+     * @expectedException \Mhary\SettingsBundle\Exception\UnknownSerializerException
      */
     public function testUnknownSerializer()
     {

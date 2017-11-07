@@ -1,9 +1,9 @@
 <?php
 
-namespace Dmishh\SettingsBundle\Tests;
+namespace Mhary\SettingsBundle\Tests;
 
-use Dmishh\SettingsBundle\Manager\CachedSettingsManager;
-use Dmishh\SettingsBundle\Manager\SettingsManager;
+use Mhary\SettingsBundle\Manager\CachedSettingsManager;
+use Mhary\SettingsBundle\Manager\SettingsManager;
 use Psr\Cache\CacheItemPoolInterface;
 
 class CachedSettingsManagerTest extends \PHPUnit_Framework_TestCase
@@ -194,12 +194,12 @@ class CachedSettingsManagerTest extends \PHPUnit_Framework_TestCase
     /**
      * @param string $ownerId
      *
-     * @return \Dmishh\SettingsBundle\Entity\SettingsOwnerInterface
+     * @return \Mhary\SettingsBundle\Entity\SettingsOwnerInterface
      */
     protected function createOwner($ownerId = 'user1')
     {
         return \Mockery::mock(
-            'Dmishh\SettingsBundle\Entity\SettingsOwnerInterface',
+            'Mhary\SettingsBundle\Entity\SettingsOwnerInterface',
             array('getSettingIdentifier' => $ownerId)
         );
     }

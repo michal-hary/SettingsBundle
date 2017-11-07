@@ -1,7 +1,7 @@
-dmishh_settings_manage_global:
+mhary_settings_manage_global:
     path:         /global
-    defaults:     { _controller: DmishhSettingsBundle:Settings:manageGlobal }
+    defaults:     { _controller: MharySettingsBundle:Settings:manageGlobal }
 
-dmishh_settings_manage_own:
+mhary_settings_manage_own:
     path:         /personal
-    defaults:     { _controller: DmishhSettingsBundle:Settings:manageOwn }
+    defaults:     { _controller: MharySettingsBundle:Settings:manageOwn }

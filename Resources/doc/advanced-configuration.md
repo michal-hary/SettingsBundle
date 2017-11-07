@@ -13,8 +13,8 @@
 Full list of options:
 
 ```yaml
-dmishh_settings:
-    template: DmishhSettingsBundle:Settings:manage.html.twig
+mhary_settings:
+    template: MharySettingsBundle:Settings:manage.html.twig
     cache_service: null
     cache_lifetime: 3600
     security:
@@ -42,7 +42,7 @@ You just specify, for example, type *[text](http://symfony.com/doc/current/refer
 Also you can use [built-in](http://symfony.com/doc/current/reference/constraints.html) or [custom constraints](http://symfony.com/doc/current/cookbook/validation/custom_constraint.html).
 
 ```yaml
-dmishh_settings:
+mhary_settings:
     settings:
         my_first_setting:
             type: text
@@ -61,7 +61,7 @@ To protect settings modification bundle uses Symfony Security Component.
 You can limit global settings modification with ```manage_global_settings_role``` and grant access to authenticated users to modify their settings.
 
 ```yaml
-dmishh_settings:
+mhary_settings:
     security:
          manage_global_settings_role: ROLE_USER
          users_can_manage_own_settings: true
@@ -74,7 +74,7 @@ Every time you fetch a setting from the database we will cache it for `cache_lif
 setting we will automatically invalidate the cache.
 
 ```yaml
-dmishh_settings:
+mhary_settings:
     cache_service: cache.provider.my_redis
     cache_lifetime: 3600
 

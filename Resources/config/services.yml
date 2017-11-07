@@ -1,35 +1,35 @@
 services:
     settings_manager:
-      alias: dmishh.settings.settings_manager
+      alias: mhary.settings.settings_manager
 
-    dmishh.settings.settings_manager:
-        class: Dmishh\SettingsBundle\Manager\SettingsManager
+    mhary.settings.settings_manager:
+        class: Mhary\SettingsBundle\Manager\SettingsManager
         arguments:
             - "@doctrine.orm.entity_manager"
-            - "@dmishh.settings.serializer"
+            - "@mhary.settings.serializer"
             - "%settings_manager.settings%"
 
-    dmishh.settings.cached_settings_manager:
-        class: Dmishh\SettingsBundle\Manager\CachedSettingsManager
-        arguments: ["@dmishh.settings.settings_manager", ~, ~]
+    mhary.settings.cached_settings_manager:
+        class: Mhary\SettingsBundle\Manager\CachedSettingsManager
+        arguments: ["@mhary.settings.settings_manager", ~, ~]
 
-    dmishh.settings.serializer_factory:
-        class: Dmishh\SettingsBundle\Serializer\SerializerFactory
+    mhary.settings.serializer_factory:
+        class: Mhary\SettingsBundle\Serializer\SerializerFactory
 
-    dmishh.settings.serializer:
-        class: Dmishh\SettingsBundle\Serializer\PhpSerializer
-        factory: ['@dmishh.settings.serializer_factory', create]
+    mhary.settings.serializer:
+        class: Mhary\SettingsBundle\Serializer\PhpSerializer
+        factory: ['@mhary.settings.serializer_factory', create]
         arguments: ["%settings_manager.serialization%"]
 
     form.type.settings_management:
-        class: Dmishh\SettingsBundle\Form\Type\SettingsType
+        class: Mhary\SettingsBundle\Form\Type\SettingsType
         arguments:
             - "%settings_manager.settings%"
         tags:
             - { name: form.type }
 
     twig.extension.settings_extension:
-        class: Dmishh\SettingsBundle\Twig\SettingsExtension
+        class: Mhary\SettingsBundle\Twig\SettingsExtension
         arguments:
             - "@settings_manager"
         tags:

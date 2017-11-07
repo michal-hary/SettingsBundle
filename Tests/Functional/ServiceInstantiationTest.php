@@ -1,8 +1,8 @@
 <?php
 
-namespace Dmishh\SettingsBundle\Tests\Functional;
+namespace Mhary\SettingsBundle\Tests\Functional;
 
-use Dmishh\SettingsBundle\Serializer\PhpSerializer;
+use Mhary\SettingsBundle\Serializer\PhpSerializer;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class ServiceInstantiationTest extends WebTestCase
@@ -16,8 +16,8 @@ class ServiceInstantiationTest extends WebTestCase
     {
         $container = static::$kernel->getContainer();
 
-        $this->assertTrue($container->has('dmishh.settings.serializer'));
-        $serializer = $container->get('dmishh.settings.serializer');
+        $this->assertTrue($container->has('mhary.settings.serializer'));
+        $serializer = $container->get('mhary.settings.serializer');
         $this->assertInstanceOf(PhpSerializer::class, $serializer);
     }
 }

@@ -22,8 +22,8 @@ article about how to override parts of a bundle.
 The template the bundle controller will use can be overwritten by changing the configuration parameter.
 
 ```yaml
-dmishh_settings:
-    template: DmishhSettingsBundle:Settings:manage.html.twig # change to your own
+mhary_settings:
+    template: MharySettingsBundle:Settings:manage.html.twig # change to your own
 ```
 
 <a name="overriding_controller"></a>

@@ -1,25 +1,25 @@
 <?php
 
 /**
- * This file is part of the DmishhSettingsBundle package.
- * (c) 2013 Dmitriy Scherbina <http://dmishh.com>
+ * This file is part of the MharySettingsBundle package.
+ * (c) 2013 Dmitriy Scherbina <http://mhary.com>
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Dmishh\SettingsBundle\Manager;
+namespace Mhary\SettingsBundle\Manager;
 
-use Dmishh\SettingsBundle\Entity\Setting;
-use Dmishh\SettingsBundle\Entity\SettingsOwnerInterface;
-use Dmishh\SettingsBundle\Exception\UnknownSettingException;
-use Dmishh\SettingsBundle\Exception\WrongScopeException;
-use Dmishh\SettingsBundle\Serializer\SerializerInterface;
+use Mhary\SettingsBundle\Entity\Setting;
+use Mhary\SettingsBundle\Entity\SettingsOwnerInterface;
+use Mhary\SettingsBundle\Exception\UnknownSettingException;
+use Mhary\SettingsBundle\Exception\WrongScopeException;
+use Mhary\SettingsBundle\Serializer\SerializerInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 
 /**
  * Settings Manager provides settings management and persistence using Doctrine's Object Manager.
  *
- * @author Dmitriy Scherbina <http://dmishh.com>
+ * @author Dmitriy Scherbina <http://mhary.com>
  * @author Artem Zhuravlov
  */
 class SettingsManager implements SettingsManagerInterface
@@ -65,7 +65,7 @@ class SettingsManager implements SettingsManagerInterface
         array $settingsConfiguration = array()
     ) {
         $this->em = $em;
-        $this->repository = $em->getRepository('Dmishh\SettingsBundle\Entity\Setting');
+        $this->repository = $em->getRepository('Mhary\SettingsBundle\Entity\Setting');
         $this->serializer = $serializer;
         $this->settingsConfiguration = $settingsConfiguration;
     }
@@ -181,7 +181,7 @@ class SettingsManager implements SettingsManagerInterface
      * @param string|array $names
      * @param SettingsOwnerInterface|null $owner
      *
-     * @throws \Dmishh\SettingsBundle\Exception\UnknownSerializerException
+     * @throws \Mhary\SettingsBundle\Exception\UnknownSerializerException
      *
      * @return SettingsManager
      */
@@ -252,8 +252,8 @@ class SettingsManager implements SettingsManagerInterface
      *
      * @return SettingsManager
      *
-     * @throws \Dmishh\SettingsBundle\Exception\UnknownSettingException
-     * @throws \Dmishh\SettingsBundle\Exception\WrongScopeException
+     * @throws \Mhary\SettingsBundle\Exception\UnknownSettingException
+     * @throws \Mhary\SettingsBundle\Exception\WrongScopeException
      */
     private function validateSetting($name, SettingsOwnerInterface $owner = null)
     {
@@ -304,7 +304,7 @@ class SettingsManager implements SettingsManagerInterface
      *
      * @param SettingsOwnerInterface|null $owner
      *
-     * @throws \Dmishh\SettingsBundle\Exception\UnknownSerializerException
+     * @throws \Mhary\SettingsBundle\Exception\UnknownSerializerException
      *
      * @return array
      */

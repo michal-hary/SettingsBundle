@@ -1,26 +1,26 @@
 <?php
 
 /**
- * This file is part of the DmishhSettingsBundle package.
- * (c) 2013 Dmitriy Scherbina <http://dmishh.com>
+ * This file is part of the MharySettingsBundle package.
+ * (c) 2013 Dmitriy Scherbina <http://mhary.com>
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Dmishh\SettingsBundle\Twig;
+namespace Mhary\SettingsBundle\Twig;
 
-use Dmishh\SettingsBundle\Manager\SettingsManagerInterface;
-use Dmishh\SettingsBundle\Entity\SettingsOwnerInterface;
+use Mhary\SettingsBundle\Manager\SettingsManagerInterface;
+use Mhary\SettingsBundle\Entity\SettingsOwnerInterface;
 
 /**
  * Extension for retrieving settings in Twig templates.
  *
- * @author Dmitriy Scherbina <http://dmishh.com>
+ * @author Dmitriy Scherbina <http://mhary.com>
  */
 class SettingsExtension extends \Twig_Extension
 {
     /**
-     * @var \Dmishh\SettingsBundle\Manager\SettingsManagerInterface
+     * @var \Mhary\SettingsBundle\Manager\SettingsManagerInterface
      */
     private $settingsManager;
 

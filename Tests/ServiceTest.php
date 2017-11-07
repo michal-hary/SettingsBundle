@@ -1,8 +1,8 @@
 <?php
 
-namespace Dmishh\SettingsBundle\Tests;
+namespace Mhary\SettingsBundle\Tests;
 
-use Dmishh\SettingsBundle\DependencyInjection\DmishhSettingsExtension;
+use Mhary\SettingsBundle\DependencyInjection\MharySettingsExtension;
 use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractExtensionTestCase;
 
 /**
@@ -13,14 +13,14 @@ class ServiceTest extends AbstractExtensionTestCase
     protected function getContainerExtensions()
     {
         return array(
-            new DmishhSettingsExtension(),
+            new MharySettingsExtension(),
         );
     }
 
     public function testAlias()
     {
         $this->load();
-        $this->assertContainerBuilderHasAlias('settings_manager', 'dmishh.settings.settings_manager');
+        $this->assertContainerBuilderHasAlias('settings_manager', 'mhary.settings.settings_manager');
     }
 
     /**
@@ -29,6 +29,6 @@ class ServiceTest extends AbstractExtensionTestCase
     public function testCacheServiceAlias()
     {
         $this->load(array('cache_service' => 'cache'));
-        $this->assertContainerBuilderHasAlias('settings_manager', 'dmishh.settings.cached_settings_manager');
+        $this->assertContainerBuilderHasAlias('settings_manager', 'mhary.settings.cached_settings_manager');
     }
 }

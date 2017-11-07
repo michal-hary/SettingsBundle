@@ -15,7 +15,7 @@
 Add `required: false` to setting validation options
 
 ```yaml
-dmishh_settings:
+mhary_settings:
     settings:
         my_first_setting:
             options:

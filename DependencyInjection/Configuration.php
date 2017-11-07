@@ -1,17 +1,17 @@
 <?php
 
 /**
- * This file is part of the DmishhSettingsBundle package.
+ * This file is part of the MharySettingsBundle package.
  *
- * (c) 2013 Dmitriy Scherbina <http://dmishh.com>
+ * (c) 2013 Dmitriy Scherbina <http://mhary.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Dmishh\SettingsBundle\DependencyInjection;
+namespace Mhary\SettingsBundle\DependencyInjection;
 
-use Dmishh\SettingsBundle\Manager\SettingsManagerInterface;
+use Mhary\SettingsBundle\Manager\SettingsManagerInterface;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 use Symfony\Component\Config\Definition\Exception\InvalidTypeException;
@@ -24,7 +24,7 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('dmishh_settings');
+        $rootNode = $treeBuilder->root('mhary_settings');
 
         $scopes = array(
             SettingsManagerInterface::SCOPE_ALL,
@@ -35,7 +35,7 @@ class Configuration implements ConfigurationInterface
         $rootNode
             ->children()
                 ->scalarNode('template')
-                    ->defaultValue('DmishhSettingsBundle:Settings:manage.html.twig')
+                    ->defaultValue('MharySettingsBundle:Settings:manage.html.twig')
                 ->end()
                 ->scalarNode('cache_service')->defaultNull()->info('A service implementing Psr\Cache\CacheItemPoolInterface')->end()
                 ->integerNode('cache_lifetime')->defaultValue(3600)->end()

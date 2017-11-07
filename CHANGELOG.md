@@ -6,9 +6,9 @@
 * New interface for your entity. We are no longer using `UserInterface`. Use `SettingsOwnerInterface` instead.
 * Changed behavior of `SettingsManager::all`. It will not return global config if the user/local values are missing
 * Added possibility to add default value as third parameter on `SettingsManager::get`
-* Updated namespace to `Dmishh\SettingsBundle` instead of `Dmishh\Bundle\SettingsBundle`
-* Updated the configuration. This break BC but makes sure the configuration is not as "deep". [#31](https://github.com/dmishh/SettingsBundle/issues/31)
-* Bump PHP to `^5.5.9` and Symfony to `^2.7|^3.0` [#50](https://github.com/dmishh/SettingsBundle/issues/50)
+* Updated namespace to `Mhary\SettingsBundle` instead of `Mhary\Bundle\SettingsBundle`
+* Updated the configuration. This break BC but makes sure the configuration is not as "deep". [#31](https://github.com/mhary/SettingsBundle/issues/31)
+* Bump PHP to `^5.5.9` and Symfony to `^2.7|^3.0` [#50](https://github.com/mhary/SettingsBundle/issues/50)
 
 #### Version 1.0.2-1.0.7 (9 Mar 2015)
 * Minor code improvements and bug fixes

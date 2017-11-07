@@ -1,17 +1,17 @@
 <?php
 
 /**
- * This file is part of the DmishhSettingsBundle package.
+ * This file is part of the MharySettingsBundle package.
  *
- * (c) 2013 Dmitriy Scherbina <http://dmishh.com>
+ * (c) 2013 Dmitriy Scherbina <http://mhary.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Dmishh\SettingsBundle\Form\Type;
+namespace Mhary\SettingsBundle\Form\Type;
 
-use Dmishh\SettingsBundle\Exception\SettingsException;
+use Mhary\SettingsBundle\Exception\SettingsException;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -19,7 +19,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 /**
  * Settings management form.
  *
- * @author Dmitriy Scherbina <http://dmishh.com>
+ * @author Dmitriy Scherbina <http://mhary.com>
  * @author Artem Zhuravlov
  */
 class SettingsType extends AbstractType
