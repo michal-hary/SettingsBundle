@@ -1,11 +1,14 @@
 {
-    "name": "dmishh/settings-bundle",
+    "name": "michal-hary/settings-bundle",
     "description": "Database centric Symfony configuration management. Global and per-user settings supported.",
     "keywords": ["symfony", "bundle", "config", "configuration", "settings"],
-    "homepage": "https://github.com/dmishh/SettingsBundle",
+    "homepage": "https://github.com/michal-hary/SettingsBundle",
     "type": "symfony-bundle",
     "license": "MIT",
     "authors": [
+        {
+            "name": "Michał Harężlak"
+        },
         {
             "name": "Dmitriy Scherbina",
             "homepage": "http://dmishh.com"
