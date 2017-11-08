@@ -32,6 +32,7 @@ install:
   - composer require symfony/framework-bundle:${SYMFONY_VERSION} --no-update
   - composer require symfony/form:${SYMFONY_VERSION} --no-update
   - composer require symfony/translation:${SYMFONY_VERSION} --no-update
+  - composer require symfony/validator :${SYMFONY_VERSION} --no-update
   - composer update
 
 script:
