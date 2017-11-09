@@ -1,7 +1,7 @@
 SettingsBundle
 ==============
 
-Fork of unsupported blabla mhary/settings-bundle
+Fork of unsupported dmishh/SettingsBundle
 
 [![Build Status](https://travis-ci.org/michal-hary/SettingsBundle.svg?branch=master)](https://travis-ci.org/michal-hary/SettingsBundle)
 
