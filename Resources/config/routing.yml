@@ -1,7 +1,7 @@
-mhary_settings_manage_global:
-    path:         /global
-    defaults:     { _controller: MharySettingsBundle:Settings:manageGlobal }
+_mhary_settings_global:
+    resource: "@MharySettingsBundle/Resources/config/routing_global.yml"
+    prefix: /global
 
-mhary_settings_manage_own:
-    path:         /personal
-    defaults:     { _controller: MharySettingsBundle:Settings:manageOwn }
+_mhary_settings_personal:
+    resource: "@MharySettingsBundle/Resources/config/routing_personal.yml"
+    prefix: /personal

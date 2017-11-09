@@ -1,5 +1,4 @@
 <?php
-
 /**
  * This file is part of the MharySettingsBundle package.
  *
@@ -37,40 +36,46 @@ class SettingsType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         foreach ($this->settingsConfiguration as $name => $configuration) {
-            // If setting's value exists in data and setting isn't disabled
-            if (array_key_exists($name, $options['data']) && !in_array($name, $options['disabled_settings'])) {
-                $fieldType = $configuration['type'];
-                $fieldOptions = $configuration['options'];
-                $fieldOptions['constraints'] = $configuration['constraints'];
+            // If setting's group equals requested
+            if ($configuration['group'] === $options['group']) {
+                // If setting's value exists in data and setting isn't disabled
+                if (array_key_exists($name, $options['data']) && !in_array($name,
+                        $options['disabled_settings'])) {
+                    $fieldType                   = $configuration['type'];
+                    $fieldOptions                = $configuration['options'];
+                    $fieldOptions['constraints'] = $configuration['constraints'];
 
-                // Validator constraints
-                if (!empty($fieldOptions['constraints']) && is_array($fieldOptions['constraints'])) {
-                    $constraints = array();
-                    foreach ($fieldOptions['constraints'] as $class => $constraintOptions) {
-                        if (class_exists($class)) {
-                            $constraints[] = new $class($constraintOptions);
-                        } else {
-                            throw new SettingsException(sprintf('Constraint class "%s" not found', $class));
+                    // Validator constraints
+                    if (!empty($fieldOptions['constraints']) && is_array($fieldOptions['constraints'])) {
+                        $constraints = array();
+                        foreach ($fieldOptions['constraints'] as $class => $constraintOptions) {
+                            if (class_exists($class)) {
+                                $constraints[] = new $class($constraintOptions);
+                            } else {
+                                throw new SettingsException(sprintf('Constraint class "%s" not found',
+                                    $class));
+                            }
                         }
+
+                        $fieldOptions['constraints'] = $constraints;
                     }
 
-                    $fieldOptions['constraints'] = $constraints;
-                }
+                    // Label I18n
+                    $fieldOptions['label']              = 'labels.'.$name;
+                    $fieldOptions['translation_domain'] = 'settings';
 
-                // Label I18n
-                $fieldOptions['label'] = 'labels.'.$name;
-                $fieldOptions['translation_domain'] = 'settings';
-
-                // Choices I18n
-                if (!empty($fieldOptions['choices'])) {
-                    $fieldOptions['choices'] = array_map(
-                        function ($label) use ($fieldOptions) {
+                    // Choices I18n
+                    if (!empty($fieldOptions['choices'])) {
+                        $fieldOptions['choices'] = array_map(
+                            function ($label) use ($fieldOptions) {
                             return $fieldOptions['label'].'_choices.'.$label;
                         },
-                        array_combine($fieldOptions['choices'], $fieldOptions['choices'])
-                    );
+                            array_combine($fieldOptions['choices'],
+                                $fieldOptions['choices'])
+                        );
+                    }
+                    $builder->add($name, $fieldType, $fieldOptions);
                 }
-                $builder->add($name, $fieldType, $fieldOptions);
             }
         }
     }
@@ -83,6 +88,7 @@ class SettingsType extends AbstractType
         $resolver->setDefaults(
             array(
                 'disabled_settings' => array(),
+                'group' => 'default'
             )
         );
     }

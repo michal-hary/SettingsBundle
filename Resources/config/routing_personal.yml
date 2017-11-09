@@ -1,0 +1,3 @@
+mhary_settings_manage_own:
+    path:         /{group}
+    defaults:     { _controller: MharySettingsBundle:Settings:manageOwn, group: 'default' }

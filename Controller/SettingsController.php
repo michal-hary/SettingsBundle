@@ -1,5 +1,4 @@
 <?php
-
 /**
  * This file is part of the MharySettingsBundle package.
  * (c) 2013 Dmitriy Scherbina <http://mhary.com>
@@ -17,14 +16,17 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class SettingsController extends Controller
 {
+
     /**
      * @param Request $request
+     * @param string $group
      *
      * @return \Symfony\Component\HttpFoundation\Response
      *
      * @throws \Symfony\Component\Security\Core\Exception\AccessDeniedException
      */
-    public function manageGlobalAction(Request $request)
+    public function manageGlobalAction(Request $request,
+                                       string $group = 'default')
     {
         $securitySettings = $this->container->getParameter('settings_manager.security');
 
@@ -32,46 +34,41 @@ class SettingsController extends Controller
             !$this->getAuthorizationChecker()->isGranted($securitySettings['manage_global_settings_role'])
         ) {
             throw new AccessDeniedException(
-                $this->container->get('translator')->trans(
-                    'not_allowed_to_edit_global_settings',
-                    array(),
-                    'settings'
-                )
+            $this->container->get('translator')->trans(
+                'not_allowed_to_edit_global_settings', array(), 'settings'
+            )
             );
         }
 
-        return $this->manage($request);
+        return $this->manage($request, null, $group);
     }
 
     /**
      * @param Request $request
+     * @param string $group
      *
      * @return \Symfony\Component\HttpFoundation\Response
      *
      * @throws \Symfony\Component\Security\Core\Exception\AccessDeniedException
      */
-    public function manageOwnAction(Request $request)
+    public function manageOwnAction(Request $request, string $group = 'default')
     {
         $securityContext = $this->getSecurityContext();
 
         if (!$securityContext->getToken()) {
             throw new AccessDeniedException(
-                $this->get('translator')->trans(
-                    'must_be_logged_in_to_edit_own_settings',
-                    array(),
-                    'settings'
-                )
+            $this->get('translator')->trans(
+                'must_be_logged_in_to_edit_own_settings', array(), 'settings'
+            )
             );
         }
 
         $securitySettings = $this->container->getParameter('settings_manager.security');
         if (!$securitySettings['users_can_manage_own_settings']) {
             throw new AccessDeniedException(
-                $this->get('translator')->trans(
-                    'not_allowed_to_edit_own_settings',
-                    array(),
-                    'settings'
-                )
+            $this->get('translator')->trans(
+                'not_allowed_to_edit_own_settings', array(), 'settings'
+            )
             );
         }
 
@@ -82,18 +79,23 @@ class SettingsController extends Controller
             throw new AccessDeniedException();
         }
 
-        return $this->manage($request, $user);
+        return $this->manage($request, $user, $group);
     }
 
     /**
      * @param Request $request
      * @param SettingsOwnerInterface|null $owner
+     * @param string $group
      *
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    protected function manage(Request $request, SettingsOwnerInterface $owner = null)
+    protected function manage(Request $request,
+                              SettingsOwnerInterface $owner = null,
+                              $group = 'default')
     {
-        $form = $this->createForm(SettingsType::class, $this->get('settings_manager')->all($owner));
+
+        $form = $this->createForm(SettingsType::class,
+            $this->get('settings_manager')->all($owner), ['group' => $group]);
 
         if ($request->isMethod('post')) {
             $form->handleRequest($request);
@@ -102,7 +104,8 @@ class SettingsController extends Controller
                 $this->get('settings_manager')->setMany($form->getData(), $owner);
                 $this->get('session')->getFlashBag()->add(
                     'success',
-                    $this->get('translator')->trans('settings_updated', array(), 'settings')
+                    $this->get('translator')->trans('settings_updated', array(),
+                        'settings')
                 );
 
                 return $this->redirect($request->getUri());
@@ -110,10 +113,10 @@ class SettingsController extends Controller
         }
 
         return $this->render(
-            $this->container->getParameter('settings_manager.template'),
-            array(
+                $this->container->getParameter('settings_manager.template'),
+                array(
                 'settings_form' => $form->createView(),
-            )
+                )
         );
     }
 
